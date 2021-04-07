@@ -1,0 +1,8 @@
+.pageContainer {
+  background-color: var(--light);
+  min-height: 100vh;
+  display: flex;
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px;
+}

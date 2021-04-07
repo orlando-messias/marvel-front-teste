@@ -1,0 +1,20 @@
+.topbarContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--dark);
+  width: 100vw;
+  height: 80px;
+  box-shadow: 1px 1px 5px black;
+  position: relative;
+}
+
+.topbarContainer img {
+  border-radius: 5px;
+}
+
+.topbarTitle {
+  font-family: 'Bebas Neue', cursive;
+  color: white;
+  letter-spacing: 1px;
+}
