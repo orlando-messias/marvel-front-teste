@@ -7,10 +7,12 @@ import CharacterCard from '../Components/CharacterCard/CharacterCard';
 import api from '../services/marvelApi';
 // styles
 import './HomeStyles.css';
+import SearchBar from '../Components/SearchBar/SearchBar';
 
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
+  const [character, setCharacter] = useState('');
 
   useEffect(() => {
     api.get('/')
@@ -20,17 +22,21 @@ export default function Home() {
   return (
     <div>
       <Topbar />
+      <SearchBar setCharacter={setCharacter} />
       <div className="pageContainer">
-        <h2>Hello World</h2>
-        <div className="cardContainer">
-          {characters.map((character, index) => (
-            <CharacterCard
-              key={index}
-              name={character.name}
-              image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-            />
-          ))}
-        </div>
+        <h2>Marvel Characters</h2>
+        {!character &&
+          <div className="cardContainer">
+            {characters.map((character, index) => (
+              <CharacterCard
+                key={index}
+                name={character.name}
+                image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              />
+            ))}
+          </div>
+        }
+        {character && character.name}
       </div>
     </div>
   )

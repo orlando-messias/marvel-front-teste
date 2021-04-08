@@ -1,0 +1,51 @@
+.searchBarContainer {
+  width: 70%;
+  height: 50px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.searchBarContainer .searchIconContainer {
+  background-color: var(--white);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 5px 0 3px;
+  border: 1px solid var(--white);
+}
+
+.searchBarContainer .searchIcon {
+  font-size: 20px;
+  background-color: var(--white);;
+}
+
+.searchBarContainer input {
+  height: 40px;
+  outline: none;
+  border: 1px solid var(--white);;
+  width: 430px;
+  padding-left: 8px;
+  font-size: 20px;
+  font-family: 'Marvel', sans-serif;
+}
+
+input::placeholder {
+  font-size: 15px;
+}
+
+.searchBarContainer input:focus {
+  border-bottom: 1px solid var(--red);
+}
+
+.searchBarContainer button {
+  background-color: var(--red);
+  font-size: 20px;
+  color: var(--white);
+  height: 40px;
+  width: 120px;
+  border: none;
+  margin-left: 20px;
+  border-radius: 5px;
+}
