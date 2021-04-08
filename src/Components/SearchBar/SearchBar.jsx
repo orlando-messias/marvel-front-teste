@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import api from '../../services/marvelApi';
+import { searchInputValidation } from '../../services/validations';
 import './SearchBarStyles.css';
 
 export default function SearchBar({ setCharacter }) {
@@ -26,7 +27,11 @@ export default function SearchBar({ setCharacter }) {
         placeholder="Character Name"
         onChange={handleInputChange}
       />
-      <button type="button" onClick={handleSearchClick}>Search</button>
+      <button
+        className="btnSearch"
+        onClick={handleSearchClick}
+        disabled={!searchInputValidation(characterName)}
+      >Search</button>
     </div>
   )
 };
