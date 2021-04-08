@@ -1,7 +1,10 @@
+// react
 import React from 'react';
-
+// images
 import logo from '../../assets/logo-marvel.png';
-import styles from './TopbarStyles.css';
+// styles
+import './TopbarStyles.css';
+
 
 export default function Topbar() {
   return (
