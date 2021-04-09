@@ -12,5 +12,5 @@ export default function Topbar() {
       <h3 className="topbarTitle">Characters and Comics</h3>
       <img src={logo} alt="Marvel"/>
     </div>
-  )
+  );
 };

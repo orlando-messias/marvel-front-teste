@@ -21,8 +21,11 @@ export default function Home() {
 
   return (
     <div>
+
       <Topbar />
+
       <SearchBar setCharacter={setCharacter} />
+
       <div className="pageContainer">
         <h2>Marvel Characters</h2>
         {!character &&
@@ -38,6 +41,7 @@ export default function Home() {
         }
         {character && character.name}
       </div>
+
     </div>
-  )
+  );
 };

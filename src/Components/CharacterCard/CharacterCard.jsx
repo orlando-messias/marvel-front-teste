@@ -4,11 +4,11 @@ import React from 'react';
 import './CharacterCardStyles.css';
 
 
-export default function CharacterCard({name, image}) {
+export default function CharacterCard({ name, image }) {
   return (
     <div className="card">
       <h3>{name}</h3>
-      <img src={image} alt={name}/>
+      <img src={image} alt={name} />
     </div>
   )
 };

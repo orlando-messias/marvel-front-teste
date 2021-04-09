@@ -1,10 +1,8 @@
 import './App.css';
 import Routes from './Routes';
 
-function App() {
+export default function App() {
   return (
     <Routes />
   );
-}
-
-export default App;
+};
