@@ -1,5 +1,5 @@
 // react
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // react icons
 import { FaSearch } from "react-icons/fa";
 // services
@@ -9,15 +9,24 @@ import { searchInputValidation } from '../../services/validations';
 import './SearchBarStyles.css';
 
 
-export default function SearchBar({ setCharacter }) {
+export default function SearchBar({ setCharacter, setSearch }) {
   const [characterName, setCharacterName] = useState('');
 
+  useEffect(() => {
+    if (characterName === '') {
+      setSearch(false);
+      setCharacter('');
+    }
+  }, [characterName]);
+
   const handleSearchClick = () => {
-    api.get(`&name=${characterName}`)
+    api().get(`&name=${characterName}`)
       .then(response => setCharacter(response.data.data.results[0]));
+
+    setSearch(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleSearchChange = (e) => {
     setCharacterName(e.target.value);
   };
 
@@ -32,7 +41,7 @@ export default function SearchBar({ setCharacter }) {
         type="text"
         name="search"
         placeholder="Character Name"
-        onChange={handleInputChange}
+        onChange={handleSearchChange}
       />
 
       <button

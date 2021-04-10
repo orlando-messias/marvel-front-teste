@@ -4,10 +4,10 @@ import React from 'react';
 import './CharacterCardStyles.css';
 
 
-export default function CharacterCard({ name, image }) {
+export default function CharacterCard({ name, id, image }) {
   return (
     <div className="card">
-      <h3>{name}</h3>
+      <h3>{name}</h3> <span>{id}</span>
       <img src={image} alt={name} />
     </div>
   )
