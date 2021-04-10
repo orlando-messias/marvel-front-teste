@@ -1,0 +1,52 @@
+.backContainer {
+  width: 100px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 5px 3px 0;
+  cursor: pointer;
+  color: red;
+}
+
+.backContainer:hover {
+  opacity: 0.8;
+}
+
+.backContainer .backArrow {
+  font-size: 34px;
+  color: #e1392c;
+  margin-right: 5px;
+}
+
+.comicDetailsCard {
+  width: 100%;
+  margin: 20px 10px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.comicDetailsCard img {
+  width: 300px;
+}
+
+.comicDetailsCard h3, p, div {
+  padding: 10px;
+}
+
+.comicDetailsCard .characterNameSpan {
+  color: blue;
+  cursor: pointer;
+  margin: 0 3px;
+  padding: 2px 6px;
+}
+
+.comicDetailsCard .characterNameSpan:hover {
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 5px;
+}
+

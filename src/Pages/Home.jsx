@@ -86,7 +86,7 @@ export default function Home() {
         )}
 
         {(!character && search) &&
-          <p>Nof Found</p>
+          <p>Not Found</p>
         }
 
       </div>
