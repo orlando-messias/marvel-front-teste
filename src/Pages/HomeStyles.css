@@ -12,3 +12,17 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.comicCardContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.foundCharacterCardContainer {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+}

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Topbar from '../Components/Topbar/Topbar';
 import CharacterCard from '../Components/CharacterCard/CharacterCard';
 import ComicCard from '../Components/ComicCard/ComicCard';
+import FoundCharacterCard from '../Components/FoundCharacterCard/FoundCharacterCard';
 // services
 import api from '../services/marvelApi';
 // styles
@@ -41,7 +42,6 @@ export default function Home() {
       <SearchBar setCharacter={setCharacter} setSearch={setSearch} />
 
       <div className="pageContainer">
-        <h2>Marvel Characters</h2>
         {(!character && !search) &&
           <div className="cardContainer">
             {characters.map((character, index) => (
@@ -56,23 +56,38 @@ export default function Home() {
         }
 
         {character && (
-          <div className="cardContainer">
-            {comics.map((comic, index) => (
-              <ComicCard
-                key={index}
-                title={comic.title}
-                description={comic.description}
-                image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+          <>
+            <h2>Character</h2>
+            <div className="foundCharacterCardContainer">
+              <FoundCharacterCard
+                name={character.name}
+                description={character.description}
+                image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                comics={character.comics.available}
+                series={character.series.available}
+                stories={character.stories.available}
+                events={character.events.available}
               />
-            ))}
-          </div>
+            </div>
+            <h2>Comics</h2>
+            <div className="comicCardContainer">
+              {comics.map((comic, index) => (
+                <ComicCard
+                  key={index}
+                  title={comic.title}
+                  description={comic.description}
+                  image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                />
+              ))}
+            </div>
+
+          </>
         )}
 
         {(!character && search) &&
           <p>Nof Found</p>
         }
 
-        {console.log(comics)}
       </div>
 
     </div>
