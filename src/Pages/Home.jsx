@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 // components
 import Topbar from '../Components/Topbar/Topbar';
 import CharacterCard from '../Components/CharacterCard/CharacterCard';
+import ComicCard from '../Components/ComicCard/ComicCard';
 // services
 import api from '../services/marvelApi';
 // styles
@@ -53,7 +54,24 @@ export default function Home() {
             ))}
           </div>
         }
-        {character && character.id}
+
+        {character && (
+          <div className="cardContainer">
+            {comics.map((comic, index) => (
+              <ComicCard
+                key={index}
+                title={comic.title}
+                description={comic.description}
+                image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {(!character && search) &&
+          <p>Nof Found</p>
+        }
+
         {console.log(comics)}
       </div>
 
