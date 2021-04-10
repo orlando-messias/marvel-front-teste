@@ -74,6 +74,7 @@ export default function Home() {
               {comics.map((comic, index) => (
                 <ComicCard
                   key={index}
+                  id={comic.id}
                   title={comic.title}
                   description={comic.description}
                   image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}

@@ -2,6 +2,13 @@
   width: 330px;
   margin: 20px 10px;
   background-color: var(--white);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.comicCard:hover {
+  box-shadow: 1px 1px 7px gray;
+  transform: scale(1.06);
 }
 
 .comicCard img{
