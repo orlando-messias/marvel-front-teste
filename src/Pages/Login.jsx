@@ -2,18 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Redirect, Link } from 'react-router-dom';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser, errorToFalse } from '../store/Login/Login.action';
 // react-icons
 import { BsFillShieldLockFill } from 'react-icons/bs';
 // services
 import {
   passwordValidation,
-  emailValidation
+  emailValidation,
+  isLogin
 } from '../services/loginServices';
 // styles
 import './LoginStyles.css';
 
 
-export default function Register() {
+export default function Login() {
   // local states
   const [userLogin, setUserLogin] = useState({
     email: '',
@@ -22,10 +26,23 @@ export default function Register() {
   const [errorEmail, setErrorEmail] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
 
+  // get data from store
+  const user = useSelector(state => state.loginReducer.user);
+  const success = useSelector(state => state.loginReducer.success);
+  const isFetching = useSelector(state => state.loginReducer.isFetching);
+  const error = useSelector(state => state.loginReducer.error);
+  const errorMessage = useSelector(state => state.loginReducer.message);
+
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
+  // checks if a user is logged in
+  useEffect(() => {
+    if (isLogin()) history.push('/home');
+  }, [history]);
 
+  // checks if email and password are valid everytime object userLogin changes
   useEffect(() => {
     emailValidation(userLogin.email)
       ? setErrorEmail(false)
@@ -35,6 +52,23 @@ export default function Register() {
       ? setErrorPassword(false) :
       setErrorPassword(true);
   }, [userLogin]);
+
+  useEffect(() => {
+    if (success) {
+      localStorage.setItem('loggedUser', JSON.stringify(user));
+      history.push('/home');
+    }
+    if (error) {
+      setUserLogin({ email: '', password: '' });
+      console.log('ERR ', errorMessage);
+    }
+  }, [success, error, dispatch]);
+
+  const login = () => {
+    const { email, password } = userLogin;
+    dispatch(errorToFalse());
+    dispatch(loginUser(email, password))
+  };
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
@@ -80,7 +114,7 @@ export default function Register() {
 
           <button
             className="formButton"
-            // onClick={login}
+            onClick={login}
             disabled={
               !(emailValidation(userLogin.email) && passwordValidation(userLogin.password))
             }
