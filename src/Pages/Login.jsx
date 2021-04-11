@@ -18,7 +18,6 @@ import './LoginStyles.css';
 
 
 export default function Login() {
-  // local states
   const [userLogin, setUserLogin] = useState({
     email: '',
     password: ''
