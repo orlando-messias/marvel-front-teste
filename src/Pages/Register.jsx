@@ -10,6 +10,7 @@ import {
   isLogin,
   generalValidation
 } from '../services/loginServices';
+import userApi from '../services/userApi';
 // styles
 import './LoginStyles.css';
 
@@ -24,6 +25,7 @@ export default function Register() {
   const [errorName, setErrorName] = useState(true);
   const [errorEmail, setErrorEmail] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
+  const [error, setError] = useState('');
 
   const history = useHistory();
 
@@ -53,6 +55,12 @@ export default function Register() {
       ...prevState,
       [name]: value
     }));
+  };
+
+  const register = () => {
+    userApi.post('/users/save', userRegister)
+      .then(() => history.push('/'))
+      .catch((e) => setError(e.response.data.message));
   };
 
 
@@ -95,8 +103,11 @@ export default function Register() {
             />
           </div>
 
+          {error && <span className="errorSpan">{error}</span>}
+
           <button
             className="formButton"
+            onClick={register}
             disabled={
               !(generalValidation(userRegister.name)
                 && emailValidation(userRegister.email)

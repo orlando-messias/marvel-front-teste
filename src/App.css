@@ -104,7 +104,8 @@ button:disabled {
 .errorSpan {
   font-size: 12px;
   color: #e1392c;
-  margin-top: 0px;
+  margin-top: 20px;
+  margin-bottom: -26px;
   font-weight: bold;
 }
 

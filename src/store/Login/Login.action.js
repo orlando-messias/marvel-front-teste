@@ -36,7 +36,7 @@ export const loginUser = (email, password) => {
   return (dispatch) => {
     dispatch(isFetching());
 
-    return apiLogin.post('/user/login', { email, password })
+    return apiLogin.post('/users/login', { email, password })
       .then((response) => dispatch(loginSuccess(response.data)))
       .catch(e => dispatch(loginError(e.response.data.message)));
   }

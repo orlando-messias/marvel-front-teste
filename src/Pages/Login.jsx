@@ -109,7 +109,7 @@ export default function Login() {
             />
           </div>
 
-          {/* {error && <span className="errorSpan">{errorMessage}</span>} */}
+          {error && <span className="errorSpan">{errorMessage}</span>}
 
           <button
             className="formButton"
