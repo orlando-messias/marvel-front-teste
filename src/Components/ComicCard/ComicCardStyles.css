@@ -1,9 +1,10 @@
 .comicCard {
   width: 330px;
-  margin: 20px 10px;
+  margin-top: 30px;
   background-color: var(--white);
   cursor: pointer;
   transition: 0.3s;
+  padding: 0;
 }
 
 .comicCard:hover {
@@ -12,7 +13,7 @@
 }
 
 .comicCard img{
-  width: 330px;
+  width: 100%;
   height: 450px;
 }
 

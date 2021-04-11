@@ -35,7 +35,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className="container">
 
       <Topbar />
 
@@ -80,6 +80,7 @@ export default function Home() {
                   image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                 />
               ))}
+              {comics.length === 0 && <p>No Comics Available</p>}
             </div>
 
           </>

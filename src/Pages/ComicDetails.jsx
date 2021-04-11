@@ -1,8 +1,9 @@
 // react
 import React, { useEffect, useState } from 'react';
 // react-icons
-import { IoChevronBackCircleSharp } from 'react-icons/io5';
+import { AiFillHome } from 'react-icons/ai';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 // components
 import Topbar from '../Components/Topbar/Topbar';
 // services
@@ -32,14 +33,19 @@ export default function ComicDetails({ match }) {
   };
 
   return (
-    <div>
+    <div className="container">
 
       <Topbar />
 
-      <div className="backContainer" onClick={handleBackContainerClick}>
-        <IoChevronBackCircleSharp className="backArrow" />
-        <span>back</span>
-      </div>
+      <Link to={'/'}>
+        <div className="backContainer" onClick={handleBackContainerClick}>
+          <div className="home">
+            <AiFillHome />
+            <span>home</span>
+          </div>
+        </div>
+
+      </Link>
 
       <div className="pageContainer">
         <h2>{comicDetail.title}</h2>

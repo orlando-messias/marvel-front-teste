@@ -6,7 +6,7 @@ import './CharacterCardStyles.css';
 
 export default function CharacterCard({ name, id, image }) {
   return (
-    <div className="card">
+    <div className="characterCard">
       <h3>{name}</h3>
       <img src={image} alt={name} />
     </div>
