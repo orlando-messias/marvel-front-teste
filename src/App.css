@@ -23,9 +23,20 @@ a {
   text-decoration: none;
 }
 
+input::placeholder {
+  font-size: 10px;
+}
+
 button {
   font-family: 'Marvel', sans-serif;
   cursor: pointer;
+}
+
+button:disabled {
+  border:1px solid gainsboro;
+  color: gainsboro;
+  cursor: initial;
+  background-color: white;
 }
 
 .container {
@@ -55,4 +66,66 @@ button {
 .backContainer .backArrow span, .backContainer .home span {
   font-size: 16px;
   margin-left: 5px;
+}
+
+.fieldsContainer .field {
+  width: 100%;
+  padding: 15px 5px 5px 5px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.fieldsContainer .field:focus {
+  outline: none;
+  border-bottom: 2px solid #e1392c;
+}
+
+
+/*  errors styles  */
+
+.error {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.noError {
+  color: rgba(0, 0, 255, 0.6);
+  border-bottom: 1px solid rgb(85, 85, 243);
+}
+
+.noError:focus {
+  border-bottom: 1px solid rgb(85, 85, 243);
+  box-shadow: 0 5px 5px -7px blue;
+}
+
+.errorSpan {
+  font-size: 12px;
+  color: #e1392c;
+  margin-top: 0px;
+  font-weight: bold;
+}
+
+/*  placeholder  */
+
+::-webkit-input-placeholder {
+  color: var(--red);
+  font-size: 10px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: var(--red);
+  font-size: 10px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: var(--red);
+  font-size: 10px;
+}
+
+:-ms-input-placeholder {  
+  color: var(--red);
+  font-size: 10px;
 }
