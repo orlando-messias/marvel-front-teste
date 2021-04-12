@@ -1,0 +1,40 @@
+.favoritesContainer {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.charactersP, .comicsP {
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 2px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 20px;
+  color: var(--red);
+}
+
+
+.cardsContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0
+}
+
+.favoriteCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+.favoriteCard img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.favoriteCard p {
+  text-align: center;
+  font-weight: bold;
+}

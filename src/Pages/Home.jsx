@@ -85,7 +85,8 @@ export default function Home() {
                 id={character.id}
                 name={character.name}
                 description={character.description}
-                image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                imagePath={character.thumbnail.path}
+                imageExt={character.thumbnail.extension}
                 comics={character.comics.available}
                 series={character.series.available}
                 stories={character.stories.available}

@@ -82,7 +82,8 @@ export default function CharacterDetails({ match }) {
             id={characterDetail.id}
             name={characterDetail.name}
             description={characterDetail.description}
-            image={`${characterDetail.thumbnail.path}.${characterDetail.thumbnail.extension}`}
+            imagePath={characterDetail.thumbnail.path}
+            imageExt={characterDetail.thumbnail.extension}
             comics={characterDetail.comics.available}
             series={characterDetail.series.available}
             stories={characterDetail.stories.available}

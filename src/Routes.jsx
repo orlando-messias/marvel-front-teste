@@ -5,6 +5,7 @@ import ComicDetails from './Pages/ComicDetails';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import UserFavorites from './Pages/UserFavorites';
 
 export default function Routes() {
   return (
@@ -14,6 +15,7 @@ export default function Routes() {
       <Route path='/register' component={Register} />
       <Route path='/comicdetails/:id' component={ComicDetails} />
       <Route path='/characterdetails/:name' component={CharacterDetails} />
+      <Route path='/favorites' component={UserFavorites} />
     </Router>
   );
 };

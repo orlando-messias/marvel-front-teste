@@ -55,7 +55,10 @@ export default function ComicDetails({ match }) {
   };
 
   const handleFavoriteClick = () => {
-    userApi.post('favorites/comics', { userId, comicId })
+    const name = comicDetail.title;
+    const thumbPath = comicDetail.thumbnail.path;
+    const thumbExt = comicDetail.thumbnail.extension
+    userApi.post('favorites/comics', { userId, comicId, name, thumbPath, thumbExt })
       .then(() => {
         setIsFavoriteComic(!isFavoriteComic);
       });

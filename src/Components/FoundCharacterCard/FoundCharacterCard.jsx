@@ -15,7 +15,8 @@ export default function FoundCharacterCard({
   id,
   name,
   description,
-  image,
+  imagePath,
+  imageExt,
   comics,
   series,
   stories,
@@ -29,9 +30,11 @@ export default function FoundCharacterCard({
 
   const userId = useSelector(state => state.loginReducer.user.id);
   const characterId = id;
+  const thumbPath = imagePath;
+  const thumbExt = imageExt;
 
   const handleFavoriteClick = () => {
-    userApi.post('favorites/characters', { userId, characterId })
+    userApi.post('favorites/characters', { userId, characterId, name, thumbPath, thumbExt })
       .then(() => {
         setIsFavoriteCharacter(!isFavoriteCharacter);
       })
@@ -40,7 +43,7 @@ export default function FoundCharacterCard({
   return (
     <div className="foundCharacterCard">
 
-      <img src={image} alt={name} />
+      <img src={`${imagePath}.${imageExt}`} alt={name} />
 
       <div className="foundCharacterInfo">
         <div className="headerCard">
