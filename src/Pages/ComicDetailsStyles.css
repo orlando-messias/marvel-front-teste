@@ -7,6 +7,10 @@
   margin-bottom: 50px;
 }
 
+.comicDetailsInfo {
+  width: 100%;
+}
+
 .comicDetailsCard img {
   width: 300px;
 }
