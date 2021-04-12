@@ -1,23 +1,40 @@
 // react
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+// redux
+import { useSelector } from 'react-redux';
+// react-icons
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
+// services
+import userApi from '../../services/userApi';
 // styles
 import './FoundCharacterCardStyles.css';
 
 
 export default function FoundCharacterCard({
+  id,
   name,
   description,
   image,
   comics,
   series,
   stories,
-  events }) {
-  const [favorite, setFavorite] = useState(false);
+  events,
+  isFavoriteCharacter,
+  setIsFavoriteCharacter }) {
+
+  useEffect(() => {
+    isFavoriteCharacter ? setIsFavoriteCharacter(true) : setIsFavoriteCharacter(false);
+  }, []);
+
+  const userId = useSelector(state => state.loginReducer.user.id);
+  const characterId = id;
 
   const handleFavoriteClick = () => {
-    setFavorite(!favorite);
+    userApi.post('favorites/characters', { userId, characterId })
+      .then(() => {
+        setIsFavoriteCharacter(!isFavoriteCharacter);
+      })
   };
 
   return (
@@ -29,7 +46,7 @@ export default function FoundCharacterCard({
         <div className="headerCard">
           <h3>{name}</h3>
           <span className="heart" onClick={handleFavoriteClick}>
-            {favorite ? <AiFillHeart style={{color: 'red'}} /> : < AiOutlineHeart />}
+            {isFavoriteCharacter ? <AiFillHeart style={{ color: 'red' }} /> : < AiOutlineHeart />}
           </span>
         </div>
         <p>{description}</p>
