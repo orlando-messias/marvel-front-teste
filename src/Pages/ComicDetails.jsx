@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 // react-icons
 import { AiFillHome } from 'react-icons/ai';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 // components
@@ -14,6 +16,11 @@ import './ComicDetailsStyles.css';
 
 export default function ComicDetails({ match }) {
   const [comicDetail, setComicDetail] = useState('');
+  const [favorite, setFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setFavorite(!favorite);
+  };
 
   const id = match.params.id;
   const history = useHistory();
@@ -59,7 +66,12 @@ export default function ComicDetails({ match }) {
           }
 
           <div>
-            <h3>{comicDetail.title}</h3>
+            <div className="headerCard">
+              <h3>{comicDetail.title}</h3>
+              <span className="heart" onClick={handleFavoriteClick}>
+                {favorite ? <AiFillHeart style={{ color: 'red' }} /> : < AiOutlineHeart />}
+              </span>
+            </div>
             <p>{comicDetail.description}</p>
             <div>
               Characters:

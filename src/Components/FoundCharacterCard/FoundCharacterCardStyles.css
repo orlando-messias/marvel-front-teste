@@ -6,11 +6,29 @@
   margin-bottom: 50px;
 }
 
+.foundCharacterCard .foundCharacterInfo {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.headerCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerCard .heart {
+  font-size: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
 .foundCharacterCard img{
   width: 300px;
 }
 
 .foundCharacterCard h3, p {
-  padding: 10px;
+  padding: 5px 10px;
   text-align: justify;
 }
