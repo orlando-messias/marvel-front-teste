@@ -1,6 +1,12 @@
 .characterCard {
   width: 300px;
   margin: 20px 10px;
+  transition: 0.3s;
+}
+
+.characterCard:hover {
+  cursor: pointer;
+  transform: scale(1.06);
 }
 
 .characterCard h3 {
