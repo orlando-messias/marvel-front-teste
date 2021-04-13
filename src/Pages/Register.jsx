@@ -1,8 +1,11 @@
 // react
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
 import { IoPersonAddSharp } from 'react-icons/io5';
+import { MdModeEdit } from 'react-icons/md';
 // services
 import {
   passwordValidation,
@@ -15,7 +18,7 @@ import userApi from '../services/userApi';
 import './LoginStyles.css';
 
 
-export default function Register() {
+export default function Register({ match }) {
   // local states
   const [userRegister, setUserRegister] = useState({
     name: '',
@@ -26,13 +29,32 @@ export default function Register() {
   const [errorEmail, setErrorEmail] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
   const [error, setError] = useState('');
+  const [mode, setMode] = useState('insert');
 
+  const modePage = match.params.mode;
   const history = useHistory();
+  const dispatch = useDispatch();
+  const userId = useSelector(state => state.loginReducer.user.id);
 
   // checks if a user is logged in
   useEffect(() => {
-    if (isLogin()) history.push('/home');
+    !isLogin()
+      ? history.push('/')
+      : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
+  }, []);
+
+  // param mode must be insert or update
+  useEffect(() => {
+    (modePage !== 'insert' && modePage !== 'update') ? history.push('/') : setMode(modePage);
   }, [history]);
+
+  // when its updating mode, get user data and fill the form
+  useEffect(() => {
+    if (mode === 'update') {
+      userApi.get(`/users/${userId}`)
+        .then(response => setUserRegister(response.data));
+    }
+  }, [mode]);
 
   // checks if email and password are valid everytime object userRegister changes
   useEffect(() => {
@@ -58,9 +80,13 @@ export default function Register() {
   };
 
   const register = () => {
-    userApi.post('/users/save', userRegister)
-      .then(() => history.push('/'))
-      .catch((e) => setError(e.response.data.message));
+    mode === 'insert'
+      ? userApi.post('/users/save', userRegister)
+          .then(() => history.push('/'))
+          .catch((e) => setError(e.response.data.message))
+      : userApi.put(`/users/${userId}`, userRegister)
+          .then(() => history.push('/home'))
+          .catch((e) => setError(e.response.data.message))
   };
 
 
@@ -69,10 +95,13 @@ export default function Register() {
       <div className="loginContainer">
 
         <div className="icon">
-          <IoPersonAddSharp />
+          {mode === 'update' ? <MdModeEdit /> : <IoPersonAddSharp />}
         </div>
 
-        <p className="title">NEW USER</p>
+        {mode === 'insert'
+          ? <p className="title">NEW USER</p>
+          : <p className="title">UPDATE USER INFO</p>
+        }
 
         <div className="form">
           <div className="fieldsContainer">
@@ -80,7 +109,7 @@ export default function Register() {
               name="name"
               type="text"
               autoFocus
-              value={userRegister.name}
+              value={userRegister && userRegister.name}
               onChange={handleInputChange}
               className={`field ${errorName ? 'error' : 'noError'}`}
               placeholder="name *"
@@ -115,7 +144,7 @@ export default function Register() {
               )
             }
           >
-            Register
+            {mode === 'insert' ? <span>Register</span> : <span>Update</span>}
           </button>
 
         </div>

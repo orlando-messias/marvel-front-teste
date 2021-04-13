@@ -12,7 +12,7 @@ export default function Routes() {
     <Router>
       <Route path='/' exact component={Login} />
       <Route path='/home' component={Home} />
-      <Route path='/register' component={Register} />
+      <Route path='/register/:mode' component={Register} />
       <Route path='/comicdetails/:id' component={ComicDetails} />
       <Route path='/characterdetails/:name' component={CharacterDetails} />
       <Route path='/favorites' component={UserFavorites} />
