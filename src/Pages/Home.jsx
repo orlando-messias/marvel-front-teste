@@ -89,7 +89,6 @@ export default function Home() {
               <CharacterCard
                 key={index}
                 name={character.name}
-                id={character.id}
                 image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               />
             ))}

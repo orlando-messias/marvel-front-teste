@@ -10,7 +10,6 @@ export default function ComicCard({ title, description, image, id }) {
   const history = useHistory();
 
   const handleComicClick = (id) => {
-    console.log('comic id ', id);
     history.push(`/comicdetails/${id}`);
   };
   
@@ -20,5 +19,5 @@ export default function ComicCard({ title, description, image, id }) {
       <h3>{title}</h3>
       <p>{description}</p>
     </div>
-  )
+  );
 };

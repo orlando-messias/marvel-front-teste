@@ -37,7 +37,7 @@ export default function FoundCharacterCard({
     userApi.post('favorites/characters', { userId, characterId, name, thumbPath, thumbExt })
       .then(() => {
         setIsFavoriteCharacter(!isFavoriteCharacter);
-      })
+      });
   };
 
   return (

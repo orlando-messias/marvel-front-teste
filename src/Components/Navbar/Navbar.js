@@ -1,8 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 // react-icons
 import { IoChevronBackCircleSharp } from 'react-icons/io5';
 import { AiFillHome } from 'react-icons/ai';
-import { useHistory } from 'react-router';
 // styles
 import './NavbarStyles.css';
 

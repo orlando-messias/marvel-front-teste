@@ -20,7 +20,7 @@ export default function SearchBar({
   const [characterName, setCharacterName] = useState('');
   const [check, setCheck] = useState(false);
 
-  // checks if search bar is empty
+  // checks if searchbar is empty
   useEffect(() => {
     if (characterName === '') {
       setSearch(false);
@@ -28,7 +28,7 @@ export default function SearchBar({
     }
   }, [characterName]);
 
-  // fetches characters or comics after clicking button search
+  // fetches characters or comics after clicking search button
   // previously verifies the state of checkbox 'Comics only'
   const handleSearchClick = () => {
     setCharacter('');

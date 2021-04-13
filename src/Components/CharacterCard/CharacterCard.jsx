@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import './CharacterCardStyles.css';
 
 
-export default function CharacterCard({ name, id, image }) {
+export default function CharacterCard({ name, image }) {
 
   const history = useHistory();
 

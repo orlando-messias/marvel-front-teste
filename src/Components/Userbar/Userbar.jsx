@@ -1,7 +1,8 @@
 // react
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+// redux
+import { useDispatch } from 'react-redux';
 import { userLogout } from '../../store/Login/Login.action';
 // react icons
 import { FaUserAlt } from 'react-icons/fa';
@@ -9,6 +10,7 @@ import { IoLogOutSharp } from 'react-icons/io5';
 import { AiFillHeart } from 'react-icons/ai';
 //styles
 import './UserbarStyles.css';
+
 
 export default function Userbar() {
 
