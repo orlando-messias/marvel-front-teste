@@ -1,6 +1,7 @@
 // react
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+// redux
 import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
@@ -34,7 +35,9 @@ export default function Register({ match }) {
   const modePage = match.params.mode;
   const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.loginReducer.user.id);
+  // global state
+  const user = useSelector(state => state.loginReducer.user);
+  const userId = user.id;
 
   // checks if a user is logged in
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function Register({ match }) {
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
   }, []);
 
-  // param mode must be insert or update
+  // url param mode must be 'insert' or 'update' only
   useEffect(() => {
     (modePage !== 'insert' && modePage !== 'update') ? history.push('/') : setMode(modePage);
   }, [history]);
@@ -79,14 +82,26 @@ export default function Register({ match }) {
     }));
   };
 
+  // when url param mode is set to insert access endpoint post, when is update access endpoint put
   const register = () => {
-    mode === 'insert'
-      ? userApi.post('/users/save', userRegister)
-          .then(() => history.push('/'))
-          .catch((e) => setError(e.response.data.message))
-      : userApi.put(`/users/${userId}`, userRegister)
-          .then(() => history.push('/home'))
-          .catch((e) => setError(e.response.data.message))
+    if (mode === 'insert') {
+      userApi.post('/users/save', userRegister)
+        .then(() => history.push('/'))
+        .catch((e) => setError(e.response.data.message))
+    }
+
+    if (mode === 'update') {
+      const { name, email } = userRegister;
+
+      userApi.put(`/users/${userId}`, userRegister)
+        .then(() => {
+          dispatch(loginSuccess({ ...user, name, email }));
+        })
+        .catch((e) => setError(e.response.data.message))
+
+      localStorage.setItem('loggedUser', JSON.stringify({ ...user, name, email }));
+      history.push('/home');
+    }
   };
 
 

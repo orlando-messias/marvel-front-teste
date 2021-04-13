@@ -5,8 +5,6 @@ import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
-import { IoChevronBackCircleSharp } from 'react-icons/io5';
-import { AiFillHome } from 'react-icons/ai';
 import FoundCharacterCard from '../Components/FoundCharacterCard/FoundCharacterCard';
 // components
 import Topbar from '../Components/Topbar/Topbar';
@@ -16,6 +14,7 @@ import userApi from '../services/userApi';
 import { isLogin } from '../services/loginServices';
 // styles
 import './CharacterDetailsStyles.css';
+import Navbar from '../Components/Navbar/Navbar';
 
 
 export default function CharacterDetails({ match }) {
@@ -49,30 +48,13 @@ export default function CharacterDetails({ match }) {
       });
   }, []);
 
-  const handleBackClick = () => {
-    window.history.back();
-  };
-
-  const handleHomeClick = () => {
-    history.push('/');
-  };
-
+  
   return (
     <div className="container">
 
       <Topbar />
 
-      <div className="backContainer">
-        <div onClick={handleBackClick} className="backArrow">
-          <IoChevronBackCircleSharp />
-          <span>back</span>
-        </div>
-
-        <div onClick={handleHomeClick} className="home">
-          <AiFillHome />
-          <span>home</span>
-        </div>
-      </div>
+      <Navbar />
 
       <div className="pageContainer">
         <h2>{characterDetail.title}</h2>

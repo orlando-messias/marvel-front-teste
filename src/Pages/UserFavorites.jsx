@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 // redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
-import { IoChevronBackCircleSharp } from 'react-icons/io5';
 // components
 import Topbar from '../Components/Topbar/Topbar';
+import Navbar from '../Components/Navbar/Navbar';
 // services
 import userApi from '../services/userApi';
 import { isLogin } from '../services/loginServices';
@@ -29,7 +29,7 @@ export default function UserFavorites() {
     !isLogin()
       ? history.push('/')
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
-  }, [userId]);
+  }, []);
 
   // get comic details by comic id, plus verifies if comic is favorite or not
   useEffect(() => {
@@ -43,26 +43,15 @@ export default function UserFavorites() {
       .then(response => setFavoritesComics(response.data));
   }, []);
 
-  const handleBackClick = () => {
-    window.history.back();
-  };
-
 
   return (
     <div className="container">
 
       <Topbar />
 
-      <div className="backContainer">
-        <div onClick={handleBackClick} className="backArrow">
-          <IoChevronBackCircleSharp />
-          <span>back</span>
-        </div>
-      </div>
+      <Navbar />
 
       <div className="pageContainer">
-        <h2>My Favorites</h2>
-
         <div className="favoritesContainer">
 
           <div>

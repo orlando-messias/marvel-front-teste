@@ -1,0 +1,23 @@
+.backContainer {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  margin: -15px 5px 5px;
+  cursor: pointer;
+  font-size: 32px;
+  color: #e1392c;
+}
+
+.backContainer .backArrow:hover, .backContainer .home:hover{
+  color: #860202;
+}
+
+.backContainer .backArrow, .backContainer .home {
+  display: flex;
+  align-items: center;
+}
+
+.backContainer .backArrow span, .backContainer .home span {
+  font-size: 16px;
+  margin-left: 5px;
+}

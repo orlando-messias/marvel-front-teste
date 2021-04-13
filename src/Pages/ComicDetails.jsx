@@ -5,11 +5,11 @@ import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
-import { IoChevronBackCircleSharp } from 'react-icons/io5';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 // components
 import Topbar from '../Components/Topbar/Topbar';
+import Navbar from '../Components/Navbar/Navbar';
 // services
 import api from '../services/comicApi';
 import userApi from '../services/userApi';
@@ -46,10 +46,6 @@ export default function ComicDetails({ match }) {
       });
   }, [comicId]);
 
-  const handleBackClick = () => {
-    window.history.back();
-  };
-
   const handleCharacterClick = (name) => {
     history.push(`/characterdetails/${name}`);
   };
@@ -69,12 +65,7 @@ export default function ComicDetails({ match }) {
 
       <Topbar />
 
-      <div className="backContainer">
-        <div onClick={handleBackClick} className="backArrow">
-          <IoChevronBackCircleSharp />
-          <span>back</span>
-        </div>
-      </div>
+      <Navbar />
 
       <div className="pageContainer">
         <h2>{comicDetail.title}</h2>
