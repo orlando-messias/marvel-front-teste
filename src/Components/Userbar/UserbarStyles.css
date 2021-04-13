@@ -27,8 +27,17 @@
   justify-content: flex-end;
 }
 
+.userBarContainer .menu span {
+  display: flex;
+  align-items: center;
+}
+
 .userBarContainer .logoutIcon {
   font-size: 18px;
   margin-left: 15px;
+}
+
+.userBarContainer span:hover, .userBarContainer .whiteMe:hover {
+  color: var(--white);
 }
 

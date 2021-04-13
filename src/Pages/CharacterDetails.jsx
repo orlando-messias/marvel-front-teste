@@ -19,7 +19,7 @@ import Navbar from '../Components/Navbar/Navbar';
 
 export default function CharacterDetails({ match }) {
   const [characterDetail, setCharacterDetail] = useState('');
-  const [isFavoriteCharacter, setIsFavoriteCharacter] = useState('');
+  const [isFavoriteCharacter, setIsFavoriteCharacter] = useState(false);
 
   const name = match.params.name;
   const history = useHistory();
@@ -46,7 +46,7 @@ export default function CharacterDetails({ match }) {
         const isFavorite = response.data.some(ch => Number(ch.characterId) === characterDetail.id);
         setIsFavoriteCharacter(isFavorite);
       });
-  }, []);
+  }, [characterDetail]);
 
   
   return (

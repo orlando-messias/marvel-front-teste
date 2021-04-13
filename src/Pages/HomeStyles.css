@@ -6,6 +6,10 @@
   padding: 10px;
 }
 
+.loading {
+  color: var(--red);
+}
+
 .cardContainer {
   width: 100%;
   display: flex;
@@ -25,4 +29,14 @@
   justify-content: flex-start;
   width: 100%;
   align-items: center;
+}
+
+.notFound {
+  margin: 20px;
+  font-size: 20px;
+  font-family: 'Marvel', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 130px;
 }

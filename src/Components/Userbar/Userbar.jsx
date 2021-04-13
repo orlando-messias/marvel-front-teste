@@ -43,10 +43,15 @@ export default function Userbar() {
         <span className="editUser" onClick={handleEditUser}>edit</span>
 
         <div className="menu">
-          <AiFillHeart className="whiteMe"/>
-          <span onClick={handleFavorites}>Favorites</span>
-          <IoLogOutSharp className="logoutIcon" />
-          <span onClick={handleLogout}>Logout</span>
+          <span>
+            <AiFillHeart className="whiteMe" />
+            <span onClick={handleFavorites}>Favorites</span>
+          </span>
+
+          <span>
+            <IoLogOutSharp className="logoutIcon" />
+            <span onClick={handleLogout}>Logout</span>
+          </span>
         </div>
       </div>
 

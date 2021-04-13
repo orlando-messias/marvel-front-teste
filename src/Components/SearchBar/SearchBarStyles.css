@@ -14,11 +14,14 @@
   align-items: center;
   padding: 0 5px 0 3px;
   border: 1px solid var(--white);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .searchBarContainer .searchIcon {
   font-size: 20px;
-  background-color: var(--white);;
+  background-color: var(--white);
+  margin-left: 10px;
 }
 
 .searchBarContainer input {
@@ -29,6 +32,8 @@
   padding-left: 8px;
   font-size: 20px;
   font-family: 'Marvel', sans-serif;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .searchBarContainer input::placeholder {
@@ -53,7 +58,7 @@
 }
 
 .searchBarContainer .btnSearch:hover {
-  box-shadow: 0 0 4px var(--graphite);
+  box-shadow: 0 0 3px var(--red);
 }
 
 .searchBarContainer .btnSearch:disabled {

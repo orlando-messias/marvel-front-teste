@@ -1,6 +1,7 @@
 // react
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { IoMdAlert } from 'react-icons/io';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
@@ -24,6 +25,8 @@ export default function Home() {
   const [comics, setComics] = useState([]);
   const [search, setSearch] = useState(false);
   const [isFavoriteCharacter, setIsFavoriteCharacter] = useState(false);
+  const [isFetchingCharacter, setIsFetchingCharacter] = useState(false);
+  const [isFetchingComics, setIsFetchingComics] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -42,8 +45,12 @@ export default function Home() {
   // get comics everytime a character is found, plus verifies if character is favorite or not
   useEffect(() => {
     if (character) {
+      setIsFetchingComics(true);
       api(character.id).get(`/`)
-        .then(response => setComics(response.data.data.results))
+        .then(response => {
+          setComics(response.data.data.results)
+          setIsFetchingComics(false)
+        })
 
       userApi.get(`/favorites/characters/${userId}`)
         .then(response => {
@@ -61,7 +68,7 @@ export default function Home() {
 
       <Topbar />
 
-      <SearchBar setCharacter={setCharacter} setSearch={setSearch} />
+      <SearchBar setCharacter={setCharacter} setSearch={setSearch} setIsFetchingCharacter={setIsFetchingCharacter} />
       {console.log(character && character.id)}
       <div className="pageContainer">
         {(!character && !search) &&
@@ -77,7 +84,9 @@ export default function Home() {
           </div>
         }
 
-        {character && (
+        {isFetchingCharacter && <div className="loading">Loading...</div>}
+
+        {!isFetchingCharacter && character && (
           <>
             <h2>Character</h2>
             <div className="foundCharacterCardContainer">
@@ -95,25 +104,33 @@ export default function Home() {
                 setIsFavoriteCharacter={setIsFavoriteCharacter}
               />
             </div>
+
             <h2>Comics</h2>
-            <div className="comicCardContainer">
-              {comics.map((comic, index) => (
-                <ComicCard
-                  key={index}
-                  id={comic.id}
-                  title={comic.title}
-                  description={comic.description}
-                  image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                />
-              ))}
-              {comics.length === 0 && <p>No Comics Available</p>}
-            </div>
+            {isFetchingComics && <div className="loading">Loading...</div>}
+            {!isFetchingComics &&
+              <div className="comicCardContainer">
+                {comics.map((comic, index) => (
+                  <ComicCard
+                    key={index}
+                    id={comic.id}
+                    title={comic.title}
+                    description={comic.description}
+                    image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                  />
+                ))}
+                {comics.length === 0 && <p>No Comics Available</p>}
+              </div>
+
+            }
 
           </>
         )}
 
-        {(!character && search) &&
-          <p>Not Found</p>
+        {(!character && !isFetchingCharacter && search) &&
+          <p className="notFound">
+            <IoMdAlert style={{ color: 'red', fontSize: '23px' }} />
+            Not Found
+          </p>
         }
 
       </div>

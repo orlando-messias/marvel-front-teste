@@ -9,7 +9,7 @@ import { searchInputValidation } from '../../services/validations';
 import './SearchBarStyles.css';
 
 
-export default function SearchBar({ setCharacter, setSearch }) {
+export default function SearchBar({ setCharacter, setSearch, setIsFetchingCharacter }) {
   const [characterName, setCharacterName] = useState('');
 
   useEffect(() => {
@@ -20,8 +20,12 @@ export default function SearchBar({ setCharacter, setSearch }) {
   }, [characterName]);
 
   const handleSearchClick = () => {
+    setIsFetchingCharacter(true);
     api().get(`&name=${characterName}`)
-      .then(response => setCharacter(response.data.data.results[0]));
+      .then(response => {
+        setCharacter(response.data.data.results[0])
+        setIsFetchingCharacter(false);
+      });
 
     setSearch(true);
   };
