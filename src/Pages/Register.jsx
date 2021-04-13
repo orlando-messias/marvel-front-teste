@@ -7,6 +7,7 @@ import { loginSuccess } from '../store/Login/Login.action';
 // react-icons
 import { IoPersonAddSharp } from 'react-icons/io5';
 import { MdModeEdit } from 'react-icons/md';
+import { IoChevronBackCircleSharp } from 'react-icons/io5';
 // services
 import {
   passwordValidation,
@@ -31,6 +32,7 @@ export default function Register({ match }) {
   const [errorPassword, setErrorPassword] = useState(true);
   const [error, setError] = useState('');
   const [mode, setMode] = useState('insert');
+  const [modified, setModified] = useState(false);
 
   const modePage = match.params.mode;
   const history = useHistory();
@@ -39,15 +41,17 @@ export default function Register({ match }) {
   const user = useSelector(state => state.loginReducer.user);
   const userId = user.id;
 
-  // checks if a user is logged in
+  // checks if mode page is 'update' and an user is logged in
   useEffect(() => {
-    !isLogin()
-      ? history.push('/')
-      : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
+    if (modePage === 'update')
+      !isLogin()
+        ? history.push('/')
+        : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
   }, []);
 
   // url param mode must be 'insert' or 'update' only
   useEffect(() => {
+    if (modePage === '') console.log('oii');
     (modePage !== 'insert' && modePage !== 'update') ? history.push('/') : setMode(modePage);
   }, [history]);
 
@@ -80,7 +84,13 @@ export default function Register({ match }) {
       ...prevState,
       [name]: value
     }));
+
+    setModified(true);
   };
+
+  const handleBackIcon = () => {
+    window.history.back();
+  }
 
   // when url param mode is set to insert access endpoint post, when is update access endpoint put
   const register = () => {
@@ -107,6 +117,10 @@ export default function Register({ match }) {
 
   return (
     <div className="pageLoginContainer">
+      {mode === 'update' &&
+        <IoChevronBackCircleSharp className="backIcon" onClick={handleBackIcon} />
+      }
+
       <div className="loginContainer">
 
         <div className="icon">
@@ -156,6 +170,7 @@ export default function Register({ match }) {
               !(generalValidation(userRegister.name)
                 && emailValidation(userRegister.email)
                 && passwordValidation(userRegister.password)
+                && modified
               )
             }
           >

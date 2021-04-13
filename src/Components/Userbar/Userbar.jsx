@@ -27,6 +27,10 @@ export default function Userbar() {
     history.push('/favorites');
   }
 
+  const handleEditUser = () => {
+    history.push('/register/update');
+  }
+
   return (
 
     <div className="userBarContainer">
@@ -36,6 +40,7 @@ export default function Userbar() {
         </span>
 
         <span className="userIcon"><FaUserAlt /></span>
+        <span className="editUser" onClick={handleEditUser}>edit</span>
 
         <div className="menu">
           <AiFillHeart className="whiteMe"/>

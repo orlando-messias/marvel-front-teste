@@ -88,3 +88,11 @@ input::placeholder {
   font-size: 12px;
   margin-top: 10px;
 }
+
+.backIcon {
+  font-size: 30px;
+  color:var(--red);
+  margin-right: 10px;
+  cursor: pointer;
+}
+

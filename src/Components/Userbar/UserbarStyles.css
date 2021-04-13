@@ -8,7 +8,12 @@
 }
 
 .userBarContainer .userIcon {
-  margin-left: 10px;
+  margin: 0 10px;
+}
+
+.userBarContainer .editUser {
+  font-size: 11px;
+  cursor: pointer;
 }
 
 .userBarContainer .menu {
