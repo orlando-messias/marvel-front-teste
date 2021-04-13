@@ -28,16 +28,18 @@ export default function FoundCharacterCard({
     isFavoriteCharacter ? setIsFavoriteCharacter(true) : setIsFavoriteCharacter(false);
   }, []);
 
-  const userId = useSelector(state => state.loginReducer.user.id);
+  const user = useSelector(state => state.loginReducer.user);
+  const { id: userId } = user;
   const characterId = id;
   const thumbPath = imagePath;
   const thumbExt = imageExt;
 
   const handleFavoriteClick = () => {
-    userApi.post('favorites/characters', { userId, characterId, name, thumbPath, thumbExt })
-      .then(() => {
-        setIsFavoriteCharacter(!isFavoriteCharacter);
-      });
+    const headers = { Authorization: `Bearer ${user.token}` };
+    userApi.post('favorites/characters',
+      { userId, characterId, name, thumbPath, thumbExt },
+      { headers })
+      .then(() => setIsFavoriteCharacter(!isFavoriteCharacter));
   };
 
   return (

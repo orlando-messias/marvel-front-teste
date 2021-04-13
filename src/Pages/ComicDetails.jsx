@@ -25,7 +25,8 @@ export default function ComicDetails({ match }) {
   const comicId = match.params.id;
   const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.loginReducer.user.id);
+  const user = useSelector(state => state.loginReducer.user);
+  const { id: userId } = user;
 
   // checks if user is logged in, if not, redirects to login page
   useEffect(() => {
@@ -36,10 +37,12 @@ export default function ComicDetails({ match }) {
 
   // get comic details by comic id, plus verifies if comic is favorite or not
   useEffect(() => {
+    const headers = { Authorization: `Bearer ${user.token}` };
+
     api(comicId).get('/')
       .then(response => setComicDetail(response.data.data.results[0]));
 
-    userApi.get(`/favorites/comics/${userId}`)
+    userApi.get(`/favorites/comics/${userId}`, { headers })
       .then(response => {
         const isFavorite = response.data.some(comic => comic.comicId === comicId);
         setIsFavoriteComic(isFavorite);
@@ -52,13 +55,14 @@ export default function ComicDetails({ match }) {
 
   // favorites or unfavorites a comic
   const handleFavoriteClick = () => {
+    const headers = { Authorization: `Bearer ${user.token}` };
     const name = comicDetail.title;
     const thumbPath = comicDetail.thumbnail.path;
     const thumbExt = comicDetail.thumbnail.extension
-    userApi.post('favorites/comics', { userId, comicId, name, thumbPath, thumbExt })
-      .then(() => {
-        setIsFavoriteComic(!isFavoriteComic);
-      });
+    userApi.post('favorites/comics',
+      { userId, comicId, name, thumbPath, thumbExt },
+      { headers })
+      .then(() => setIsFavoriteComic(!isFavoriteComic));
   };
 
   return (

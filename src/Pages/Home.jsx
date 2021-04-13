@@ -30,7 +30,8 @@ export default function Home() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.loginReducer.user.id);
+  const user = useSelector(state => state.loginReducer.user);
+  const {id: userId} = user;
 
   useEffect(() => {
     // checks if user is logged in, if not, redirects to login page
@@ -50,6 +51,7 @@ export default function Home() {
   // if a character is found, search for all its comics
   // plus verifies if its favorite or not
   useEffect(() => {
+    const headers = { Authorization: `Bearer ${user.token}` };
     if (character) {
       setIsFetchingComics(true);
       api(character.id).get(`/`)
@@ -58,7 +60,7 @@ export default function Home() {
           setIsFetchingComics(false)
         })
 
-      userApi.get(`/favorites/characters/${userId}`)
+      userApi.get(`/favorites/characters/${userId}`, { headers })
         .then(response => {
           const isFavorite = response.data.some(ch => Number(ch.characterId) === character.id);
           setIsFavoriteCharacter(isFavorite);

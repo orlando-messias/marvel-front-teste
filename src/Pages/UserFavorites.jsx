@@ -32,13 +32,15 @@ export default function UserFavorites() {
 
   // fetches api to get all favorites characters and comics
   useEffect(() => {
-    userApi.get(`/favorites/characters/${userId}`)
+    const headers = { Authorization: `Bearer ${user.token}` };
+
+    userApi.get(`/favorites/characters/${userId}`, { headers })
       .then(response => {
         setFavoritesCharacters(response.data)
         console.log(response.data)
       });
 
-    userApi.get(`/favorites/comics/${userId}`)
+    userApi.get(`/favorites/comics/${userId}`, { headers })
       .then(response => setFavoritesComics(response.data));
   }, []);
 

@@ -51,14 +51,14 @@ export default function Register({ match }) {
 
   // url param mode must be 'insert' or 'update' only
   useEffect(() => {
-    if (modePage === '') console.log('oii');
     (modePage !== 'insert' && modePage !== 'update') ? history.push('/') : setMode(modePage);
   }, [history]);
 
   // when its updating mode, get user data and fill the form
   useEffect(() => {
     if (mode === 'update') {
-      userApi.get(`/users/${userId}`)
+      const headers = { Authorization: `Bearer ${user.token}` };
+      userApi.get(`/users/${userId}`, { headers })
         .then(response => setUserRegister(response.data));
     }
   }, [mode]);
@@ -94,8 +94,9 @@ export default function Register({ match }) {
 
   // when url param mode is set to insert access endpoint post, when is update access endpoint put
   const register = () => {
+    const headers = { Authorization: `Bearer ${user.token}` };
     if (mode === 'insert') {
-      userApi.post('/users/save', userRegister)
+      userApi.post('/users/save', userRegister, { headers })
         .then(() => history.push('/'))
         .catch((e) => setError(e.response.data.message))
     }
@@ -103,7 +104,7 @@ export default function Register({ match }) {
     if (mode === 'update') {
       const { name, email } = userRegister;
 
-      userApi.put(`/users/${userId}`, userRegister)
+      userApi.put(`/users/${userId}`, userRegister, { headers })
         .then(() => {
           dispatch(loginSuccess({ ...user, name, email }));
         })

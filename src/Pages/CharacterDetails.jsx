@@ -24,7 +24,8 @@ export default function CharacterDetails({ match }) {
   const name = match.params.name;
   const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.loginReducer.user.id);
+  const user = useSelector(state => state.loginReducer.user);
+  const { id: userId } = user;
 
   // checks if user is logged in, if not, redirects to login page
   useEffect(() => {
@@ -41,14 +42,15 @@ export default function CharacterDetails({ match }) {
 
   // checks if character is favorite by the user
   useEffect(() => {
-    userApi.get(`/favorites/characters/${userId}`)
+    const headers = { Authorization: `Bearer ${user.token}` };
+    userApi.get(`/favorites/characters/${userId}`, { headers })
       .then(response => {
         const isFavorite = response.data.some(ch => Number(ch.characterId) === characterDetail.id);
         setIsFavoriteCharacter(isFavorite);
       });
   }, [characterDetail]);
 
-  
+
   return (
     <div className="container">
 
