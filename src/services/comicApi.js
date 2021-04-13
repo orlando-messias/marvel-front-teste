@@ -6,7 +6,9 @@ const hash = 'e419cc9b5da7dce8bd014ec325efdf4b';
 const url = 'http://gateway.marvel.com/v1/public/comics';
 
 const comicApi = (comicId) => axios.create({
-  baseURL: `${url}/${comicId}?ts=${timestamp}&apikey=${apikey}&hash=${hash}&limit=1`
+  baseURL: comicId
+    ? `${url}/${comicId}?ts=${timestamp}&apikey=${apikey}&hash=${hash}&limit=20`
+    : `${url}?ts=${timestamp}&apikey=${apikey}&hash=${hash}&limit=20`
 });
 
 export default comicApi;

@@ -41,7 +41,7 @@ export default function Register({ match }) {
   const user = useSelector(state => state.loginReducer.user);
   const userId = user.id;
 
-  // checks if mode page is 'update' and an user is logged in
+  // checks if url param mode is 'update' and any user is logged in
   useEffect(() => {
     if (modePage === 'update')
       !isLogin()

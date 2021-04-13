@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 // redux
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/Login/Login.action';
-// react-icons
 // components
 import Topbar from '../Components/Topbar/Topbar';
 import Navbar from '../Components/Navbar/Navbar';
@@ -31,7 +30,7 @@ export default function UserFavorites() {
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
   }, []);
 
-  // get comic details by comic id, plus verifies if comic is favorite or not
+  // fetches api to get all favorites characters and comics
   useEffect(() => {
     userApi.get(`/favorites/characters/${userId}`)
       .then(response => {

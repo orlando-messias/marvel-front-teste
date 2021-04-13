@@ -1,7 +1,7 @@
 // react
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser, errorToFalse } from '../store/Login/Login.action';
@@ -18,6 +18,7 @@ import './LoginStyles.css';
 
 
 export default function Login() {
+  // local states
   const [userLogin, setUserLogin] = useState({
     email: '',
     password: ''

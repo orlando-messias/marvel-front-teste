@@ -50,6 +50,7 @@ export default function ComicDetails({ match }) {
     history.push(`/characterdetails/${name}`);
   };
 
+  // favorites or unfavorites a comic
   const handleFavoriteClick = () => {
     const name = comicDetail.title;
     const thumbPath = comicDetail.thumbnail.path;

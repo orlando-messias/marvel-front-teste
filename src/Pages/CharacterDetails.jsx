@@ -9,7 +9,7 @@ import FoundCharacterCard from '../Components/FoundCharacterCard/FoundCharacterC
 // components
 import Topbar from '../Components/Topbar/Topbar';
 // services
-import api from '../services/marvelApi';
+import characterApi from '../services/characterApi';
 import userApi from '../services/userApi';
 import { isLogin } from '../services/loginServices';
 // styles
@@ -35,7 +35,7 @@ export default function CharacterDetails({ match }) {
 
   // get character by name
   useEffect(() => {
-    api().get(`&name=${name}`)
+    characterApi().get(`&name=${name}`)
       .then(response => setCharacterDetail(response.data.data.results[0]));
   }, [name]);
 

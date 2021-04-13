@@ -12,7 +12,7 @@ import CharacterCard from '../Components/CharacterCard/CharacterCard';
 import ComicCard from '../Components/ComicCard/ComicCard';
 import FoundCharacterCard from '../Components/FoundCharacterCard/FoundCharacterCard';
 // services
-import api from '../services/marvelApi';
+import api from '../services/characterApi';
 import userApi from '../services/userApi';
 import { isLogin } from '../services/loginServices';
 // styles
@@ -38,11 +38,17 @@ export default function Home() {
       ? history.push('/')
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
 
+    // fetch some characters from marvel api to render on home page 
+    setIsFetchingCharacter(true);
     api().get('/')
-      .then(response => setCharacters(response.data.data.results));
+      .then(response => {
+        setCharacters(response.data.data.results);
+        setIsFetchingCharacter(false);
+      });
   }, []);
 
-  // get comics everytime a character is found, plus verifies if character is favorite or not
+  // if a character is found, search for all its comics
+  // plus verifies if its favorite or not
   useEffect(() => {
     if (character) {
       setIsFetchingComics(true);
@@ -60,7 +66,7 @@ export default function Home() {
     } else {
       setComics([]);
     }
-  }, [character, isFavoriteCharacter]);
+  }, [character]);
 
 
   return (
@@ -68,8 +74,14 @@ export default function Home() {
 
       <Topbar />
 
-      <SearchBar setCharacter={setCharacter} setSearch={setSearch} setIsFetchingCharacter={setIsFetchingCharacter} />
-      {console.log(character && character.id)}
+      <SearchBar
+        setCharacter={setCharacter}
+        setSearch={setSearch}
+        setIsFetchingCharacter={setIsFetchingCharacter}
+        setComics={setComics}
+        setIsFetchingComics={setIsFetchingComics}
+      />
+
       <div className="pageContainer">
         {(!character && !search) &&
           <div className="cardContainer">
@@ -120,13 +132,28 @@ export default function Home() {
                 ))}
                 {comics.length === 0 && <p>No Comics Available</p>}
               </div>
-
             }
-
           </>
         )}
 
-        {(!character && !isFetchingCharacter && search) &&
+        {!isFetchingComics && !isFetchingCharacter && comics && !character && (
+          <>
+            <h2>Comics</h2>
+            <div className="comicCardContainer">
+              {comics.map((comic, index) => (
+                <ComicCard
+                  key={index}
+                  id={comic.id}
+                  title={comic.title}
+                  description={comic.description}
+                  image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        {(!character && comics.length === 0 && !isFetchingCharacter && !isFetchingComics && search) &&
           <p className="notFound">
             <IoMdAlert style={{ color: 'red', fontSize: '23px' }} />
             Not Found
