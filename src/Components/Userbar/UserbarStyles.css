@@ -1,0 +1,29 @@
+.userBarContainer {
+  text-align: right;
+  font-weight: bold;
+  color: var(--white);
+  margin-top: 7px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 18px;
+}
+
+.userBarContainer .userIcon {
+  margin-left: 10px;
+}
+
+.userBarContainer .menu {
+  cursor: pointer;
+  color: rgb(69, 69, 189);
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.userBarContainer .logoutIcon {
+  font-size: 18px;
+  margin-left: 15px;
+}
+
