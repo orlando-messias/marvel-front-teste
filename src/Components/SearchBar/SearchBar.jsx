@@ -16,7 +16,7 @@ export default function SearchBar({
   setIsFetchingCharacter,
   setComics,
   setIsFetchingComics }) {
-  
+
   const [characterName, setCharacterName] = useState('');
   const [check, setCheck] = useState(false);
 
@@ -69,7 +69,7 @@ export default function SearchBar({
       <input
         type="text"
         name="search"
-        placeholder="Character Name"
+        placeholder={check ? 'Comic Title' : 'Character Name'}
         onChange={handleSearchChange}
       />
 

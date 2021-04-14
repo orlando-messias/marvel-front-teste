@@ -27,6 +27,10 @@
   justify-content: flex-end;
 }
 
+.userBarContainer .menu .whiteMe {
+  margin-right: 3px;
+}
+
 .userBarContainer .menu span {
   display: flex;
   align-items: center;

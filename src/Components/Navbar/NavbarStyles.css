@@ -6,6 +6,7 @@
   cursor: pointer;
   font-size: 32px;
   color: #e1392c;
+  margin-left: 30px;
 }
 
 .backContainer .backArrow:hover, .backContainer .home:hover{

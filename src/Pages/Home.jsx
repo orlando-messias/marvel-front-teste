@@ -31,7 +31,7 @@ export default function Home() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(state => state.loginReducer.user);
-  const {id: userId} = user;
+  const { id: userId } = user;
 
   useEffect(() => {
     // checks if user is logged in, if not, redirects to login page
@@ -48,8 +48,8 @@ export default function Home() {
       });
   }, []);
 
-  // if a character is found, search for all its comics
-  // plus verifies if its favorite or not
+  // if a character is found, then search for all their comics
+  // plus verifies if it's favorite or not
   useEffect(() => {
     const headers = { Authorization: `Bearer ${user.token}` };
     if (character) {
@@ -97,8 +97,10 @@ export default function Home() {
           </div>
         }
 
-        {isFetchingCharacter && <div className="loading">Loading...</div>}
+        {/* renders div loading everytime is fetching characters */}
+        {isFetchingCharacter && <div className="loading">LOADING...</div>}
 
+        {/* renders both characters and comics cards when a character is found and it's not loading */}
         {!isFetchingCharacter && character && (
           <>
             <h2>Character</h2>
@@ -118,26 +120,33 @@ export default function Home() {
               />
             </div>
 
-            <h2>Comics</h2>
             {isFetchingComics && <div className="loading">Loading...</div>}
             {!isFetchingComics &&
-              <div className="comicCardContainer">
-                {comics.map((comic, index) => (
-                  <ComicCard
-                    key={index}
-                    id={comic.id}
-                    title={comic.title}
-                    description={comic.description}
-                    image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                  />
-                ))}
-                {comics.length === 0 && <p>No Comics Available</p>}
-              </div>
+              <>
+                <h2>Comics</h2>
+                <div className="comicCardContainer">
+                  {comics.map((comic, index) => (
+                    <ComicCard
+                      key={index}
+                      id={comic.id}
+                      title={comic.title}
+                      description={comic.description}
+                      image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                    />
+                  ))}
+                  {comics.length === 0 && <p>No Comics Available</p>}
+                </div>
+              </>
             }
           </>
         )}
 
-        {!isFetchingComics && !isFetchingCharacter && comics && !character && (
+        {/*  renders div loading everytime is fetching comics  */}
+        {isFetchingComics && <div className="loading">LOADING...</div>}
+
+        {/*  renders when it's not fetching comics nor characters, plus comics is found and
+        a character is not found  */}
+        {!isFetchingComics && !isFetchingCharacter && comics.length > 0 && !character && (
           <>
             <h2>Comics</h2>
             <div className="comicCardContainer">
@@ -154,6 +163,7 @@ export default function Home() {
           </>
         )}
 
+        {/*  renders when a character and comics are not found after searching  */}
         {(!character && comics.length === 0 && !isFetchingCharacter && !isFetchingComics && search) &&
           <p className="notFound">
             <IoMdAlert style={{ color: 'red', fontSize: '23px' }} />

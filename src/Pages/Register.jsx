@@ -18,6 +18,7 @@ import {
 import userApi from '../services/userApi';
 // styles
 import './LoginStyles.css';
+import Topbar from '../Components/Topbar/Topbar';
 
 
 export default function Register({ match }) {
@@ -117,67 +118,72 @@ export default function Register({ match }) {
 
 
   return (
-    <div className="pageLoginContainer">
-      {mode === 'update' &&
-        <IoChevronBackCircleSharp className="backIcon" onClick={handleBackIcon} />
-      }
+    <div className="container">
 
-      <div className="loginContainer">
+      {mode === 'update' && <Topbar />}
 
-        <div className="icon">
-          {mode === 'update' ? <MdModeEdit /> : <IoPersonAddSharp />}
-        </div>
-
-        {mode === 'insert'
-          ? <p className="title">NEW USER</p>
-          : <p className="title">UPDATE USER INFO</p>
+      <div className="pageLoginContainer">
+        {mode === 'update' &&
+          <IoChevronBackCircleSharp className="backIcon" onClick={handleBackIcon} />
         }
 
-        <div className="form">
-          <div className="fieldsContainer">
-            <input
-              name="name"
-              type="text"
-              autoFocus
-              value={userRegister && userRegister.name}
-              onChange={handleInputChange}
-              className={`field ${errorName ? 'error' : 'noError'}`}
-              placeholder="name *"
-            />
-            <input
-              name="email"
-              type="text"
-              value={userRegister.email}
-              onChange={handleInputChange}
-              className={`field ${errorEmail ? 'error' : 'noError'}`}
-              placeholder="email *"
-            />
-            <input
-              name="password"
-              type="password"
-              value={userRegister.password}
-              onChange={handleInputChange}
-              className={`field ${errorPassword ? 'error' : 'noError'}`}
-              placeholder="password (no spaces allowed)"
-            />
+        <div className="loginContainer">
+
+          <div className="icon">
+            {mode === 'update' ? <MdModeEdit /> : <IoPersonAddSharp />}
           </div>
 
-          {error && <span className="errorSpan">{error}</span>}
+          {mode === 'insert'
+            ? <p className="title">NEW USER</p>
+            : <p className="title">UPDATE USER INFO</p>
+          }
 
-          <button
-            className="formButton"
-            onClick={register}
-            disabled={
-              !(generalValidation(userRegister.name)
-                && emailValidation(userRegister.email)
-                && passwordValidation(userRegister.password)
-                && modified
-              )
-            }
-          >
-            {mode === 'insert' ? <span>Register</span> : <span>Update</span>}
-          </button>
+          <div className="form">
+            <div className="fieldsContainer">
+              <input
+                name="name"
+                type="text"
+                autoFocus
+                value={userRegister && userRegister.name}
+                onChange={handleInputChange}
+                className={`field ${errorName ? 'error' : 'noError'}`}
+                placeholder="name *"
+              />
+              <input
+                name="email"
+                type="text"
+                value={userRegister.email}
+                onChange={handleInputChange}
+                className={`field ${errorEmail ? 'error' : 'noError'}`}
+                placeholder="email *"
+              />
+              <input
+                name="password"
+                type="password"
+                value={userRegister.password}
+                onChange={handleInputChange}
+                className={`field ${errorPassword ? 'error' : 'noError'}`}
+                placeholder="password (no spaces allowed)"
+              />
+            </div>
 
+            {error && <span className="errorSpan">{error}</span>}
+
+            <button
+              className="formButton"
+              onClick={register}
+              disabled={
+                !(generalValidation(userRegister.name)
+                  && emailValidation(userRegister.email)
+                  && passwordValidation(userRegister.password)
+                  && modified
+                )
+              }
+            >
+              {mode === 'insert' ? <span>Register</span> : <span>Update</span>}
+            </button>
+
+          </div>
         </div>
       </div>
     </div>
