@@ -8,15 +8,14 @@ import { loginSuccess } from '../store/Login/Login.action';
 import FoundCharacterCard from '../Components/FoundCharacterCard/FoundCharacterCard';
 // components
 import Topbar from '../Components/Topbar/Topbar';
+import Navbar from '../Components/Navbar/Navbar';
+import ComicCard from '../Components/ComicCard/ComicCard';
 // services
 import characterApi from '../services/characterApi';
 import userApi from '../services/userApi';
-// import comicApi from '../services/comicApi';
 import { isLogin } from '../services/loginServices';
 // styles
 import './CharacterDetailsStyles.css';
-import Navbar from '../Components/Navbar/Navbar';
-import ComicCard from '../Components/ComicCard/ComicCard';
 
 
 export default function CharacterDetails({ match }) {
@@ -44,6 +43,7 @@ export default function CharacterDetails({ match }) {
       .then(response => setCharacterDetail(response.data.data.results[0]));
   }, [name]);
 
+  // get comics by character id
   useEffect(() => {
     if (characterDetail) {
       setIsFetchingComics(true);
@@ -55,7 +55,7 @@ export default function CharacterDetails({ match }) {
     }
   }, [name, characterDetail]);
 
-  // checks if character is favorite by the user
+  // checks if character is a favorite one
   useEffect(() => {
     const headers = { Authorization: `Bearer ${user.token}` };
     userApi.get(`/favorites/characters/${userId}`, { headers })
