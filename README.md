@@ -13,6 +13,7 @@ Ao localizar um personagem:
 - são exibidas suas informações principais;
 - o usuário pode favoritá-lo ou desfavoritá-lo;
 - mostra os Comics em que ele está inserido.
+
 #### :camera: Screenshot
 <p align="center"><img src="/src/assets/character-screen.png"></p>
 
@@ -21,14 +22,18 @@ Ao localizar um Comic:
 - são exibidas suas informações principais;
 - é possível clicar e acessar os seus detalhes;
 - na página de detalhes é possível favoritar ou desfavoritar o Comic.
+
 #### :camera: Screenshot
 <p align="center"><img src="/src/assets/comic-screen.png"></p>
 
 
 Na topbar, o link ***Favorites*** direciona o usuário para a página **favorites** que exibe os personagens e comics favoritados.
 
-Algumas características:
-- Responsividade;
+##### :camera: Screenshot
+<p align="center"><img src="/src/assets/comic-screen.png"></p>
+
+
+Características:
 - Utiliza Redux para gerenciar os dados do usuário logado como *name*, *email* e *token*;
 - Campos dos formulários possuem validações lógicas e visuais;
 - Utiliza token para as requisições;
