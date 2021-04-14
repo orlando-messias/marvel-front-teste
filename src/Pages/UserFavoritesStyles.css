@@ -29,6 +29,12 @@
   margin-top: 0;
   margin-left: 2px;
   width: 180px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.favoriteCard:hover {
+  transform: scale(1.06);
 }
 
 .favoriteCard p {

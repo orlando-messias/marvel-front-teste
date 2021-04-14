@@ -44,6 +44,14 @@ export default function UserFavorites() {
       .then(response => setFavoritesComics(response.data));
   }, []);
 
+  const handleCharacterClick = (name) => {
+    history.push(`/characterdetails/${name}`);
+  };
+
+  const handleComicClick = (id) => {
+    history.push(`/comicDetails/${id}`);
+  };
+
 
   return (
     <div className="container">
@@ -59,7 +67,11 @@ export default function UserFavorites() {
             {favoritesCharacters.length > 0 && <p className="charactersP">Characters</p>}
             <div className="cardsContainer">
               {favoritesCharacters.map((fav, index) => (
-                <div key={index} className="favoriteCard">
+                <div
+                  key={index}
+                  className="favoriteCard"
+                  onClick={() => handleCharacterClick(fav.name)}
+                >
                   <p>{fav.name}</p>
                   <img src={`${fav.thumbPath}.${fav.thumbExt}`} alt={fav.name} />
                 </div>
@@ -71,7 +83,11 @@ export default function UserFavorites() {
             {favoritesComics.length > 0 && <p className="comicsP">Comics</p>}
             <div className="cardsContainer">
               {favoritesComics.map((fav, index) => (
-                <div key={index} className="favoriteCard">
+                <div
+                  key={index}
+                  className="favoriteCard"
+                  onClick={() => handleComicClick(fav.comicId)}
+                >
                   <p>{fav.name}</p>
                   <img src={`${fav.thumbPath}.${fav.thumbExt}`} alt={fav.name} />
                 </div>
