@@ -12,9 +12,10 @@ body {
 
 :root {
   --blue: #0000ff;
+  --light-blue: #9595ff;
   --dark: #202020;
   --graphite: #1f2127;
-  --light: #f2f3f5;
+  --light: #e6e6e6;
   --red: #ff0000;
   --white: #ffffff;
 }

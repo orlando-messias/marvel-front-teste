@@ -18,7 +18,7 @@
 
 .userBarContainer .menu {
   cursor: pointer;
-  color: rgb(69, 69, 189);
+  color: var(--light-blue);
   text-align: right;
   padding-top: 10px;
   padding-right: 0;
