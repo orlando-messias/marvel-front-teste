@@ -5,8 +5,8 @@ Após o usuário se cadastrar no sistema e realizar login, é permitido visualiz
 
 Na página ***home***, a aplicação exibe os primeiros 20 personagens em formato de card e disponibiliza uma barra de pesquisa para procurar por um nome de Personagem ou título de um Comic.
 
-#### :camera: Screenshot
-<p align="center"><img src="/src/assets/home-screen.png"></p>
+##### :camera: Screenshot
+<p align="center"><img src="/src/assets/home-screen.jpg"></p>
 
 
 Ao localizar um personagem:
@@ -14,8 +14,8 @@ Ao localizar um personagem:
 - o usuário pode favoritá-lo ou desfavoritá-lo;
 - mostra os Comics em que ele está inserido.
 
-#### :camera: Screenshot
-<p align="center"><img src="/src/assets/character-screen.png"></p>
+##### :camera: Screenshot
+<p align="center"><img src="/src/assets/character-screen.jpg"></p>
 
 
 Ao localizar um Comic:
@@ -23,14 +23,14 @@ Ao localizar um Comic:
 - é possível clicar e acessar os seus detalhes;
 - na página de detalhes é possível favoritar ou desfavoritar o Comic.
 
-#### :camera: Screenshot
-<p align="center"><img src="/src/assets/comic-screen.png"></p>
+##### :camera: Screenshot
+<p align="center"><img src="/src/assets/comic-screen.jpg"></p>
 
 
 Na topbar, o link ***Favorites*** direciona o usuário para a página **favorites** que exibe os personagens e comics favoritados.
 
 ##### :camera: Screenshot
-<p align="center"><img src="/src/assets/comic-screen.png"></p>
+<p align="center"><img src="/src/assets/favorites-screen.jpg"></p>
 
 
 Características:
