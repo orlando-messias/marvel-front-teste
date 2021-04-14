@@ -11,14 +11,18 @@ import Topbar from '../Components/Topbar/Topbar';
 // services
 import characterApi from '../services/characterApi';
 import userApi from '../services/userApi';
+// import comicApi from '../services/comicApi';
 import { isLogin } from '../services/loginServices';
 // styles
 import './CharacterDetailsStyles.css';
 import Navbar from '../Components/Navbar/Navbar';
+import ComicCard from '../Components/ComicCard/ComicCard';
 
 
 export default function CharacterDetails({ match }) {
   const [characterDetail, setCharacterDetail] = useState('');
+  const [comics, setComics] = useState([]);
+  const [isFetchingComics, setIsFetchingComics] = useState(false);
   const [isFavoriteCharacter, setIsFavoriteCharacter] = useState(false);
 
   const name = match.params.name;
@@ -39,6 +43,17 @@ export default function CharacterDetails({ match }) {
     characterApi().get(`&name=${name}`)
       .then(response => setCharacterDetail(response.data.data.results[0]));
   }, [name]);
+
+  useEffect(() => {
+    if (characterDetail) {
+      setIsFetchingComics(true);
+      characterApi(characterDetail.id).get(`/`)
+        .then(response => {
+          setComics(response.data.data.results)
+          setIsFetchingComics(false)
+        })
+    }
+  }, [name, characterDetail]);
 
   // checks if character is favorite by the user
   useEffect(() => {
@@ -77,7 +92,34 @@ export default function CharacterDetails({ match }) {
           />
         }
 
+        {/* renders div loading everytime is fetching comics */}
+        {isFetchingComics && <div className="loading">Loading...</div>}
+
+        {/*  renders when comics are found  */}
+        {comics.length > 0 &&
+          <>
+            <h2>Comics</h2>
+            <div className="comicCardContainer">
+              {comics.map((comic, index) => (
+                <ComicCard
+                  key={index}
+                  id={comic.id}
+                  title={comic.title}
+                  description={comic.description}
+                  image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                />
+              ))}
+            </div>
+          </>
+        }
+
+        {/*  renders when is not fetchin comics, a character is found and no comics  */}
+        {!isFetchingComics && characterDetail && comics.length === 0 &&
+          <p>No Comics Available</p>
+        }
+
       </div>
+
     </div>
   );
 };
