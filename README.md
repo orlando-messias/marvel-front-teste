@@ -5,15 +5,25 @@ Após o usuário se cadastrar no sistema e realizar login, é permitido visualiz
 
 Na página ***home***, a aplicação exibe os primeiros 20 personagens em formato de card e disponibiliza uma barra de pesquisa para procurar por um nome de Personagem ou título de um Comic.
 
+#### :camera: Screenshot
+<p align="center"><img src="/src/assets/home-screen.png"></p>
+
+
 Ao localizar um personagem:
 - são exibidas suas informações principais;
 - o usuário pode favoritá-lo ou desfavoritá-lo;
 - mostra os Comics em que ele está inserido.
+#### :camera: Screenshot
+<p align="center"><img src="/src/assets/character-screen.png"></p>
+
 
 Ao localizar um Comic:
 - são exibidas suas informações principais;
 - é possível clicar e acessar os seus detalhes;
 - na página de detalhes é possível favoritar ou desfavoritar o Comic.
+#### :camera: Screenshot
+<p align="center"><img src="/src/assets/comic-screen.png"></p>
+
 
 Na topbar, o link ***Favorites*** direciona o usuário para a página **favorites** que exibe os personagens e comics favoritados.
 
@@ -26,16 +36,6 @@ Algumas características:
 
 ### :bulb: Antes de Começar
 Clone e inicialize o backend [marvel-challenge-backend](https://github.com/orlando-messias/marvel-challenge-backend) para o gerenciamento do login e dos dados dos usuários.
-
-### :camera: Screenshots
-
-<p align="center"><img src="/src/assets/imagesReadme/dragonCards.png"></p>
-
-<p align="center"><img src="/src/assets/imagesReadme/topbar.png"></p>
-
-<p align="center"><img src="/src/assets/imagesReadme/modalAdd.png"></p>
-
-<p align="center"><img src="/src/assets/imagesReadme/modalDelete.png"></p>
 
 
 ### :gear: Instalações
