@@ -35,7 +35,7 @@ export default function CharacterDetails({ match }) {
     !isLogin()
       ? history.push('/')
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
-  }, []);
+  }, [dispatch, history]);
 
   // get character by name
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function CharacterDetails({ match }) {
         const isFavorite = response.data.some(ch => Number(ch.characterId) === characterDetail.id);
         setIsFavoriteCharacter(isFavorite);
       });
-  }, [characterDetail]);
+  }, [characterDetail, user.token, userId]);
 
 
   return (

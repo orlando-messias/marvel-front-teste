@@ -28,7 +28,7 @@ export default function UserFavorites() {
     !isLogin()
       ? history.push('/')
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
-  }, []);
+  }, [dispatch, history]);
 
   // fetches api to get all favorites characters and comics
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function UserFavorites() {
 
     userApi.get(`/favorites/comics/${userId}`, { headers })
       .then(response => setFavoritesComics(response.data));
-  }, []);
+  }, [user.token, userId]);
 
   const handleCharacterClick = (name) => {
     history.push(`/characterdetails/${name}`);

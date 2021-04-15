@@ -33,7 +33,7 @@ export default function ComicDetails({ match }) {
     !isLogin()
       ? history.push('/')
       : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
-  }, []);
+  }, [dispatch, history]);
 
   // get comic details by comic id, plus verifies if comic is favorite or not
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function ComicDetails({ match }) {
         const isFavorite = response.data.some(comic => comic.comicId === comicId);
         setIsFavoriteComic(isFavorite);
       });
-  }, [comicId]);
+  }, [comicId, user.token, userId]);
 
   const handleCharacterClick = (name) => {
     history.push(`/characterdetails/${name}`);

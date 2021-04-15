@@ -26,7 +26,7 @@ export default function FoundCharacterCard({
 
   useEffect(() => {
     isFavoriteCharacter ? setIsFavoriteCharacter(true) : setIsFavoriteCharacter(false);
-  }, []);
+  }, [isFavoriteCharacter, setIsFavoriteCharacter]);
 
   const user = useSelector(state => state.loginReducer.user);
   const { id: userId } = user;

@@ -26,7 +26,7 @@ export default function SearchBar({
       setSearch(false);
       setCharacter('');
     }
-  }, [characterName]);
+  }, [characterName, setCharacter, setSearch]);
 
   // fetches characters or comics after clicking search button
   // previously verifies the state of checkbox 'Comics only'

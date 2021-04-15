@@ -48,12 +48,12 @@ export default function Register({ match }) {
       !isLogin()
         ? history.push('/')
         : dispatch(loginSuccess(JSON.parse(localStorage.getItem('loggedUser'))));
-  }, []);
+  }, [dispatch, history, modePage]);
 
   // url param mode must be 'insert' or 'update' only
   useEffect(() => {
     (modePage !== 'insert' && modePage !== 'update') ? history.push('/') : setMode(modePage);
-  }, [history]);
+  }, [history, modePage]);
 
   // when its updating mode, get user data and fill the form
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Register({ match }) {
       userApi.get(`/users/${userId}`, { headers })
         .then(response => setUserRegister(response.data));
     }
-  }, [mode]);
+  }, [mode, user.token, userId]);
 
   // checks if email and password are valid everytime object userRegister changes
   useEffect(() => {

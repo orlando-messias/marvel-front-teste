@@ -46,7 +46,7 @@ export default function Home() {
         setCharacters(response.data.data.results);
         setIsFetchingCharacter(false);
       });
-  }, []);
+  }, [dispatch, history]);
 
   // if a character is found, then search for all their comics
   // plus verifies if it's favorite or not
@@ -68,7 +68,7 @@ export default function Home() {
     } else {
       setComics([]);
     }
-  }, [character]);
+  }, [character, user.token, userId]);
 
 
   return (

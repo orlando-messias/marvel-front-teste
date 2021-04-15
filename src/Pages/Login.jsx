@@ -29,7 +29,6 @@ export default function Login() {
   // get data from store
   const user = useSelector(state => state.loginReducer.user);
   const success = useSelector(state => state.loginReducer.success);
-  const isFetching = useSelector(state => state.loginReducer.isFetching);
   const error = useSelector(state => state.loginReducer.error);
   const errorMessage = useSelector(state => state.loginReducer.message);
 
@@ -62,7 +61,7 @@ export default function Login() {
       setUserLogin({ email: '', password: '' });
       console.log('ERR ', errorMessage);
     }
-  }, [success, error, dispatch]);
+  }, [success, error, dispatch, errorMessage, history, user]);
 
   const login = () => {
     const { email, password } = userLogin;
