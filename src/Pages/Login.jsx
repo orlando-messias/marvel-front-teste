@@ -105,7 +105,7 @@ export default function Login() {
               value={userLogin.password}
               onChange={handleInputChange}
               className={`field ${errorPassword ? 'error' : 'noError'}`}
-              placeholder="password no spaces allowed"
+              placeholder="password (letters and numbers)"
             />
           </div>
 
