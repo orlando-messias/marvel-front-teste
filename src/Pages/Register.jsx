@@ -19,6 +19,8 @@ import userApi from '../services/userApi';
 // styles
 import './LoginStyles.css';
 import Topbar from '../Components/Topbar/Topbar';
+// react-toastify
+import { toast } from 'react-toastify';
 
 
 export default function Register({ match }) {
@@ -98,7 +100,10 @@ export default function Register({ match }) {
     const headers = { Authorization: `Bearer ${user.token}` };
     if (mode === 'insert') {
       userApi.post('/users/save', userRegister, { headers })
-        .then(() => history.push('/'))
+        .then(() => {
+          toast.success('Success!!! Now you can login!');
+          history.push('/');
+        })
         .catch((e) => setError(e.response.data.message))
     }
 
