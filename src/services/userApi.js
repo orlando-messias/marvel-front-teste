@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const userApi = axios.create({
-  baseURL: 'https://marvel-api-user.herokuapp.com/'
+  baseURL: 'http://localhost:3001'
 });
 
 export default userApi;
